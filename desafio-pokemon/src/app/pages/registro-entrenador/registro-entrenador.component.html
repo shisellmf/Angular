@@ -1,0 +1,74 @@
+
+<div class="grid grid-cols-1 py-4 pl-8 shadow-xl">
+  <div class="nav">
+    <img class="nav__logo" src="../../assets/pokeapi.png" alt="">
+  </div>
+</div>
+
+<div class="grid grid-cols-1 pl-8 pb-8">
+  <div class="header">
+    <p class="header__title">
+      <mat-icon class="header__icon mr-3">chevron_left</mat-icon>
+      <span class="font-bold">¡Hola!</span><span class="font-semibold"> Configuremos tu perfil </span>
+    </p>
+    <small class="header__subtitle pl-8 pt-2">Queremos conocerte mejor</small>
+  </div>
+</div>
+
+<div class="grid gap-x-8 gap-y-8 md:grid-cols-2 sm:grid-cols-1 justify-items-center body">
+    <div class="body__image shrink-0">
+      <div class="grid p-8 grid-cols-1 place-items-center gap-4 ...">
+        <div class="body__image__titulo pt-2 pb-3"><p>Imágen Perfil</p></div>
+        <div>
+          <ng-container *ngIf="imagePreview; else iconPlaceholder">
+            <img [src]="imagePreview" alt="Imagen" class="body__image__foto rounded-full" />
+          </ng-container>
+          <ng-template #iconPlaceholder>
+            <div class="body__image__icon rounded-full place-content-center justify-items-center">
+              <img [src]="fallbackImage" alt="Icon">
+            </div>
+          </ng-template>
+        </div>
+        <div class="w-full pt-8">
+          <div class="body__image__upload border border-dashed rounded-xl ...">
+            <label class="flex place-content-between gap-4 pt-2 cursor-pointer">
+              <input type="file" hidden accept="image/*" (change)="onFileSelected($event)"/>
+              <div class="body_image__text">Adjunta una foto</div>
+              <div><mat-icon>cloud_upload</mat-icon></div>
+              <!--<ng-template #name></ng-template>-->
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="body__form md:place-self-start">
+      <p class="body__form__titulo">Tu información</p>
+      <p class="body__form__subtitulo pb-8">Completa la siguiente información para completas tu perfil</p>
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Nombre*</mat-label>
+        <input name="iNombre" matInput>
+      </mat-form-field>
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Pasatiempo Favorito</mat-label>
+        <input name="iNombre" matInput>
+      </mat-form-field>
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Cumpleaños*</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+          <mat-icon class="text-base" matDatepickerToggleIcon>calendar_today</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="w-full mb-8" appearance="outline">
+        <mat-label>Documento*</mat-label>
+        <input name="iNombre" matInput>
+      </mat-form-field>
+      <div class="text-center">
+        <button class="body__form__button font-semibold" mat-flat-button extended disabled="true">Continuar</button>
+      </div>
+    </div>
+</div>
+
+
+
