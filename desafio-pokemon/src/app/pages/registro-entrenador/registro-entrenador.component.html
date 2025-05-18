@@ -33,41 +33,34 @@
           <div class="body__image__upload border border-dashed rounded-xl ...">
             <label class="flex place-content-between gap-4 pt-2 cursor-pointer">
               <input type="file" hidden accept="image/*" (change)="onFileSelected($event)"/>
-              <div class="body_image__text">Adjunta una foto</div>
-              <div><mat-icon>cloud_upload</mat-icon></div>
-              <!--<ng-template #name></ng-template>-->
+              <div class="body_image__text"><p>{{imageText}}</p></div>
+              <div>
+                <ng-container *ngIf="imagePreview; else restore">
+                  <mat-icon class="text-red-900">restore_from_trash</mat-icon>
+                </ng-container>
+                <ng-template #restore>
+                  <mat-icon>cloud_upload</mat-icon>
+                </ng-template>
+              </div>
             </label>
           </div>
         </div>
       </div>
     </div>
-    <div class="body__form md:place-self-start">
-      <p class="body__form__titulo">Tu información</p>
-      <p class="body__form__subtitulo pb-8">Completa la siguiente información para completas tu perfil</p>
-      <mat-form-field class="w-full" appearance="outline">
-        <mat-label>Nombre*</mat-label>
-        <input name="iNombre" matInput>
-      </mat-form-field>
-      <mat-form-field class="w-full" appearance="outline">
-        <mat-label>Pasatiempo Favorito</mat-label>
-        <input name="iNombre" matInput>
-      </mat-form-field>
-      <mat-form-field class="w-full" appearance="outline">
-        <mat-label>Cumpleaños*</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matIconSuffix [for]="picker">
-          <mat-icon class="text-base" matDatepickerToggleIcon>calendar_today</mat-icon>
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field class="w-full mb-8" appearance="outline">
-        <mat-label>Documento*</mat-label>
-        <input name="iNombre" matInput>
-      </mat-form-field>
-      <div class="text-center">
-        <button class="body__form__button font-semibold" mat-flat-button extended disabled="true">Continuar</button>
+    <ng-container *ngIf="step===0">
+      <div class="body__form md:place-self-start">
+        <app-form-entrenador></app-form-entrenador>
       </div>
-    </div>
+    </ng-container>
+    <ng-container *ngIf="step===1">
+      <div class="body__list md:place-self-start">
+        <app-list-pokemon></app-list-pokemon>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="step===2">
+
+    </ng-container>
+
 </div>
 
 

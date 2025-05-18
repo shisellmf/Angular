@@ -1,1 +1,46 @@
-<p>form-entrenador works!</p>
+
+  <p class="body__form__titulo">Tu información</p>
+  <p class="body__form__subtitulo pb-8">Completa la siguiente información para completas tu perfil</p>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="w-full" appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" />
+      <mat-error *ngIf="profileForm.get('nombre')?.hasError('required')">
+        El nombre es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full" appearance="outline">
+      <mat-label>Pasatiempo Favorito</mat-label>
+      <mat-select formControlName="pasatiempo">
+          <mat-option class="text-sm" *ngFor="let item of pasatiempos" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="w-full" appearance="outline">
+      <mat-label>Cumpleaños</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="cumpleanos"
+             (dateChange)="updateDuiValidator($event.value)">
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <mat-icon class="text-base" matDatepickerToggleIcon>calendar_today</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="profileForm.get('cumpleanos')?.hasError('required')">
+        El cumpleanos es requerido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full mb-8" appearance="outline">
+      <mat-label>{{descripcionDocumento}}</mat-label>
+      <input matInput formControlName="documento" placeholder="00000000-0" mask="00000000-0" [dropSpecialCharacters]="false">
+      <mat-error *ngIf="profileForm.get('documento')?.hasError('required')">
+        El DUI es requerido
+      </mat-error>
+      <mat-error *ngIf="profileForm.get('documento')?.hasError('pattern')">
+        Formato inválido
+      </mat-error>
+    </mat-form-field>
+    <div class="text-center">
+      <button #btnContinuar class="body__form__button font-semibold custom-flat-button" mat-flat-button extended disabled="true">Continuar</button>
+    </div>
+  </form>
+

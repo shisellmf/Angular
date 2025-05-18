@@ -3,10 +3,21 @@
 $primary-color:#185A7D;
 $secondary-color:#FFC600;
 $info-color:#868686;
+$neutro-color:#F2F2F2;
 $text-blue: #2C85BC;
 $base-color:#ffffff;
 $hover-color:#E7EFF5;
+$button-primary:#01426A;
 //size
 $fontsize-titulo:33px;
 $fontsize-subtitulo:18px;
 $fontsize-info:15px;
+//mixin
+@mixin titulo {
+  color: $primary-color;
+  font-size: $fontsize-titulo;
+}
+@mixin subtitulo {
+  color: $info-color;
+  font-size: $fontsize-subtitulo;
+}

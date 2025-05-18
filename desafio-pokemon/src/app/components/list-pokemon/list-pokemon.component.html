@@ -1,1 +1,17 @@
-<p>list-pokemon works!</p>
+<p class="body__list__titulo">Pókemon</p>
+<p class="body__list__subtitulo pb-8">Selecciona 3 Pókemon para que sean parte de tu equipo</p>
+<form class="body_list_search">
+  <mat-form-field class="w-full">
+    <mat-icon matSuffix>search</mat-icon>
+    <mat-label></mat-label>
+    <input class="!rounded-xl" type="text" matInput placeholder="Buscar por índice, nombre...">
+  </mat-form-field>
+</form>
+<div class="grid md:grid-cols-3 sm:grid-cols-1 body_list_pokemon">
+  <div *ngFor="let pokemon of listado">
+    <div class="backgroud-pk"></div>
+    <p>{{pokemon.id}}</p>
+    <p>{{pokemon.name}}</p>
+    <img src="{{pokemon.image}}" alt="">
+  </div>
+</div>

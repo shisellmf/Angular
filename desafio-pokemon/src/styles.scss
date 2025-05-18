@@ -1,5 +1,6 @@
 
 @use '@angular/material' as mat;
+@use 'sass:map';
 @import './styles/variables.scss';
 @import './styles/main.scss';
 
@@ -7,88 +8,88 @@
 @tailwind components;
 @tailwind utilities;
 
-
 // Tema de Angular Material (después de tailwind)
 @include mat.core();
 
-//Paleta PRIMARY personalizada - Amarillo (#FFC600)
-$pokemon-primary: mat.define-palette((
-  50:  #e3f2fd,
-  100: #bbdefb,
-  200: #90caf9,
-  300: #64b5f6,
-  400: #42a5f5,
-  500: #185a7d, // tono base
-  600: #156083,
-  700: #0e4660,
-  800: #09394f,
-  900: #04283b,
-  A100: #82b1ff,
-  A200: #448aff,
-  A400: #2979ff,
-  A700: #2962ff,
-  contrast: (
-    50:  black,
-    100: black,
-    200: black,
-    300: white,
-    400: white,
-    500: white,
-    600: white,
-    700: white,
-    800: white,
-    900: white,
-    A100: black,
-    A200: white,
-    A400: white,
-    A700: white,
-  )
+$custom-primary: map.merge(mat.$indigo-palette, (
+  500: $primary-color
 ));
 
-//Paleta ACCENT personalizada - Azul (#185A7D)
-$pokemon-accent: mat.define-palette((
-  50:  #fff8e1,
-  100: #ffecb3,
-  200: #ffe082,
-  300: #ffd54f,
-  400: #ffca28,
-  500: #ffc600, // tono base
-  600: #ffb300,
-  700: #ffa000,
-  800: #ff8f00,
-  900: #ff6f00,
-  A100: #ffe57f,
-  A200: #ffd740,
-  A400: #ffc400,
-  A700: #ffab00,
-  contrast: (
-    50: black,
-    100: black,
-    200: black,
-    300: black,
-    400: black,
-    500: black,
-    600: black,
-    700: black,
-    800: black,
-    900: black,
-    A100: black,
-    A200: black,
-    A400: black,
-    A700: black,
-  )
+$custom-accent: map.merge(mat.$amber-palette, (
+  500: $secondary-color
 ));
 
-//WARN estándar
-$pokemon-warn: mat.define-palette(mat.$red-palette);
+//paleta tonos
+$primary-palette: mat.define-palette($custom-primary);
+$accent-palette: mat.define-palette($custom-accent);
+$warn-palette: mat.define-palette(mat.$red-palette);
 
-$pokemon-theme: mat.define-light-theme((
+$custom-theme: mat.define-light-theme((
   color: (
-    primary: $pokemon-primary,
-    accent: $pokemon-accent,
-    warn: $pokemon-warn,
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette,
   )
 ));
 
-@include mat.all-component-themes($pokemon-theme);
+@include mat.all-component-themes($custom-theme);
 
+mat-icon{
+  color: $text-blue;
+}
+
+mat-form-field{
+  border-radius: 20px;
+}
+
+mat-select{
+  margin-top: 5px;
+  border-radius: 20px !important;
+}
+
+mat-option{
+  color: $text-blue !important;
+  border-bottom: 1px solid $text-blue;
+}
+
+mat-option:hover{
+  background-color: $hover-color;
+}
+
+.mat-mdc-option:hover:not(.mdc-list-item--disabled), .mat-mdc-option:focus:not(.mdc-list-item--disabled), .mat-mdc-option.mat-mdc-option-active, .mat-mdc-option.mdc-list-item--selected:not(.mat-mdc-option-multiple):not(.mdc-list-item--disabled) {
+  background: $hover-color;
+}
+
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) .mdc-menu-surface.mat-mdc-select-panel {
+  border-radius: 15px !important;
+  margin-top: 7px;
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE y Edge antiguos
+  color: $text-blue;
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari
+  }
+}
+
+.mdc-menu-surface.mat-mdc-select-panel {
+  padding: 0 !important;
+}
+
+.mdc-text-field--outlined{
+  border-color: $primary-color;
+}
+
+.mdc-notched-outline__notch { border-right: none; }
+
+.input-full{
+  color: $primary-color;
+}
+
+.mat-form-field-should-float{
+  color: $primary-color;
+}
+
+.mat-mdc-form-field-error-wrapper{
+  font-size: 12px;
+  padding: 0 !important;
+}

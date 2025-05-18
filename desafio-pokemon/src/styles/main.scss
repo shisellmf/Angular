@@ -7,12 +7,10 @@ body { margin: 0; font-family: 'Poppins', sans-serif; }
   width: 10%;
 }
 
-mat-icon{
-  color: #2C85BC;
-}
+.custom-flat-button:not(:disabled) {
+  background-color: $button-primary !important;
+  color: white !important;
 
-mat-form-field{
-  border-radius: 20px;
 }
 
 .header{
@@ -76,14 +74,21 @@ mat-form-field{
 
 }
 
-.body__form{
+.body__list{
   &__titulo{
-    color: $primary-color;
-    font-size: $fontsize-titulo;
+    @include titulo();
   }
   &__subtitulo{
-    color: $info-color;
-    font-size: $fontsize-subtitulo;
+    @include subtitulo();
+  }
+}
+
+.body__form{
+  &__titulo{
+    @include titulo();
+  }
+  &__subtitulo{
+    @include subtitulo();
   }
   &__button{
     width: 200px;
@@ -92,3 +97,5 @@ mat-form-field{
     font-size: $fontsize-subtitulo;
   }
 }
+
+
